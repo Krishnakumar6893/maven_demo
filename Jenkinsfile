@@ -19,9 +19,10 @@ pipeline {
 	     }
 	     }
 
-             stage (“Building docker image”) {
+             stage (“Deploy”) {
              steps {
-             sh label: '', script: 'docker build -t tomcat .'
+             sh label: '', script: '''docker build -t tomcat .
+             docker run -d -p 84:8080 --name container tomcat:latest'''
 	     }
 	     }
 	}
