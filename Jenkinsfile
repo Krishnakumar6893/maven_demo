@@ -5,5 +5,6 @@ pipeline {
              steps {
              git 'https://github.com/krishnakumar6893/maven_demo'             
 	     }
-             }
+	     }
+	}
 }
