@@ -3,7 +3,7 @@ pipeline {
         stages {
 	     stage (“Checkout”) {
              steps {
-             checkout scm
-             }
+             git 'https://github.com/krishnakumar6893/maven_demo'             
+	     }
              }
 }
