@@ -18,6 +18,21 @@ pipeline {
              junit '**/gameoflife-web/target/surefire-reports/*.xml, **/gameoflife-core/target/easyb/*.xml, **/gameoflife-core/target/surefire-reports/*.xml'
 	     }
 	     }
+		
+	     stage('Sonarqube') {
+             environment {
+              scannerHome = tool 'sonar'
+             }
+             
+             steps {
+             withSonarQubeEnv('sonarqube') {
+             sh "${scannerHome}/bin/sonar-scanner"
+             }
+             timeout(time: 10, unit: 'MINUTES') {
+             waitForQualityGate abortPipeline: true
+             }
+             }
+             }
 
              stage (“Deploy”) {
              steps {
