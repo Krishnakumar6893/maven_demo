@@ -26,10 +26,12 @@ pipeline {
              }
              }
 		
+   	     stage ("Approval") {
              mail (to: 'krishnakumar.santhanam@imaginea.com',
              subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) is waiting for input",
              body: "Please go to ${env.BUILD_URL}.");
-             input 'Ready to go?';   
+             input 'Ready to go?';
+	     }
 
              stage (“Deploy”) {
              steps {
